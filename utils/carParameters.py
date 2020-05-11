@@ -114,7 +114,7 @@ def Spide_Data(SPIDER,configUrl,valuetypes):
     try:
         if not SPIDER.requestConfigLink(configUrl):
             # 请求超时，证明没有数据，返回请求下一个
-            print("\n请求超时")
+            return {"status":500,"msg":"请求超时"}
         # 解析出页面所有的span
         classNameSet = SPIDER.parseSpanClassName()
         SPIDER.translatePage(classNameSet)
@@ -171,6 +171,7 @@ def Spide_Data(SPIDER,configUrl,valuetypes):
                     value = shuxingValueArray[k][j]
                     allData[j][key] = value
         return({
+            "status":200,
             "chexingIdList":chexingIdList,
             "data":allData,
             "shuxingNameList":allShuxingName,
@@ -178,7 +179,6 @@ def Spide_Data(SPIDER,configUrl,valuetypes):
         })
     except Exception as e:
         writeLog("【抓取车型参数错误】页面链接-" + configUrl + "错误信息为" + str(e))
-        print("400/////" + str(e))
         return ()
 
 
