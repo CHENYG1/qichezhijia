@@ -117,10 +117,11 @@ while True:
             "shuxingTypes": ["基本参数", "车身", "发动机", "变速箱", "底盘转向", "车轮制动"]
         }
         carid = eval(input("请输入指定的车型ID："))
+
         data = Spide_Data(SPIDER=ConfigSpider(),
                           configUrl="https://car.autohome.com.cn/config/spec/{}.html".format(carid),
                           valuetypes=args["shuxingTypes"])
-        if data:
+        if data["status"] == 200:
             try:
                 current_index = data["chexingIdList"].index(str(carid))
                 with open("backend.json", "w", encoding="gb2312") as f:
@@ -128,8 +129,11 @@ while True:
                 ids = Update_Table(args["carTablename"], args["carParameterTablename"], data, current_index)
             except Exception as e:
                 print(e)
-        print("车型ID "+str(carid)+" 更新完成！")
-        print("\n")
+            print("车型ID " + str(carid) + " 更新完成！")
+            print("\n")
+        else:
+            print("更新失败！")
+            print("\n")
     elif cmdline == 7:
         carlevel = ""
         while carlevel not in ["roadster", "suv", "car"]:
