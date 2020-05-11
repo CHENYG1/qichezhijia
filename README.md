@@ -38,13 +38,13 @@
 
      
 
-  3. 存储车型参数的表```car_parameters```:
+  3. 存储车型参数的表car level+_```car_parameters```:
 
      说明：预选规定需要爬取的车型参数
 
      ```sql
      DROP TABLE IF EXISTS `suv_carparamaters`;
-     CREATE TABLE jsuv_carparamaters (`carid` varchar(225),`name` varchar(225),`厂商` varchar(225),`级别` varchar(225),`能源类型` varchar(225),
+     CREATE TABLE suv_carparamaters (`carid` varchar(225),`name` varchar(225),`厂商` varchar(225),`级别` varchar(225),`能源类型` varchar(225),
      `环保标准` varchar(225),`最大功率(kW)` varchar(225),`最大扭矩(N·m)` varchar(225),`发动机` varchar(225),`变速箱` varchar(225),
      `长*宽*高(mm)` varchar(225),`最高车速(km/h)` varchar(225),`官方0-100km/h加速(s)` varchar(225),`实测0-100km/h加速(s)` varchar(225),
      `实测100-0km/h制动(m)` varchar(225),`工信部综合油耗(L/100km)` varchar(225),`实测油耗` varchar(225),
